@@ -1,0 +1,35 @@
+<idea-plugin>
+    <id>change-case-plugin</id>
+    <name>Change Case</name>
+    <version>1.0.0</version>
+    <vendor>Francesco Cischele</vendor>
+
+    <description><![CDATA[
+      Converts the selected text, or the word at the caret, to the next case format:
+      camelCase, PascalCase, snake_case, SNAKE_CASE, kebab-case, space case and Title Case.
+      Works with multiple carets.
+      <br/>
+      Run it from Edit → Change Case or with Shift+Alt+U.
+      Which formats are used, and in which order, is set in Settings → Editor → Change Case.
+    ]]></description>
+
+    <change-notes><![CDATA[
+      <p>1.0.0: first release.</p>
+    ]]></change-notes>
+
+    <depends>com.intellij.modules.platform</depends>
+
+    <actions>
+        <action id="changecaseplugin.ChangeCase" class="changecaseplugin.ChangeCaseAction"
+                text="Change Case"
+                description="Convert the selection, or the word at the caret, to the next case format">
+            <add-to-group group-id="EditSmartGroup" anchor="after" relative-to-action="EditorToggleCase"/>
+            <keyboard-shortcut keymap="$default" first-keystroke="shift alt U"/>
+        </action>
+    </actions>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <applicationConfigurable parentId="editor" id="changecaseplugin.settings" displayName="Change Case"
+                                 instance="changecaseplugin.ChangeCaseConfigurable"/>
+    </extensions>
+</idea-plugin>
